@@ -16,6 +16,5 @@ urlpatterns = [
     path('category/<slug:category_slug>/', tasks_views.category_tasks, name='category_tasks'),
     path('add-task/', tasks_views.add_task, name='add_task'),
     path('delete-task/<int:task_id>/', tasks_views.delete_task, name='delete_task'),
-    # Social auth
     path('social-auth/', include('social_django.urls', namespace='social')),
 ]
