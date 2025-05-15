@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" id="mainContainer">
+    {% for category in categories %}
+    <div class="icon-box" data-category="{{ category.slug }}">
+        <i class="fas {{ category.icon }}"></i>
+        <span>{{ category.name }}</span>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Меню задач -->
+<div class="task-menu" id="taskMenu">
+    <div class="task-menu-header">
+        <h2 id="taskMenuTitle"></h2>
+        <button id="closeTaskMenu"><i class="fas fa-times"></i></button>
+    </div>
+    <ul id="taskList"></ul>
+    <div class="task-form">
+        <input type="text" id="taskInput" placeholder="Введите задачу">
+        <input type="date" id="taskDeadline">
+        <select id="taskSubcategory">
+        </select>
+        <button id="addTask">Добавить задачу</button>
+        <p id="errorMessage" class="error-message"></p>
+    </div>
+    <button id="backToMain">Вернуться на главную</button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const categories = {
+        {% for category in categories %}
+        '{{ category.slug }}': {
+            name: '{{ category.name }}',
+            subcategories: [
+                {% for subcategory in category.subcategories.all %}
+                {id: {{ subcategory.id }}, name: '{{ subcategory.name }}'}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    };
+</script>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="verification-container">
+    <div class="verification-icon">
+        <i class="fas fa-user-lock"></i>
+    </div>
+    <p>На ваш email ({{ email }}) отправлен код подтверждения. Введите его ниже:</p>
+    <form id="codeForm" method="POST">
+        {% csrf_token %}
+        <div class="input-group">
+            <label for="verificationCode">Код подтверждения:</label>
+            <div class="input-wrapper">
+                <input type="text" id="verificationCode" name="code" required placeholder="Введите код">
+                <button type="button" id="clearCode" class="clear-button"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <button type="submit">Подтвердить</button>
+        <p id="codeErrorMessage" class="error-message"></p>
+        <button type="button" id="resendCode">Отправить код повторно</button>
+        <p id="timer"></p>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const codeInput = document.getElementById('verificationCode');
+    const clearCodeButton = document.getElementById('clearCode');
+    const resendCodeButton = document.getElementById('resendCode');
+    const timerDisplay = document.getElementById('timer');
+    let countdown;
+    
+    // Очистка кода
+    clearCodeButton.addEventListener('click', () => {
+        codeInput.value = '';
+    });
+    
+    // Запуск таймера на 3 минуты
+    startTimer(3, timerDisplay);
+    
+    // Функция для запуска таймера
+    function startTimer(minutes, display) {
+        let time = minutes * 60;
+        countdown = setInterval(() => {
+            const minutesLeft = Math.floor(time / 60);
+            let secondsLeft = time % 60;
+            secondsLeft = secondsLeft < 10 ? '0' + secondsLeft : secondsLeft;
+            display.textContent = `${minutesLeft}:${secondsLeft}`;
+            time--;
+            
+            if (time < 0) {
+                clearInterval(countdown);
+                display.textContent = 'Время истекло';
+                resendCodeButton.disabled = false;
+            }
+        }, 1000);
+    }
+    
+    // Повторная отправка кода
+    resendCodeButton.addEventListener('click', () => {
+        fetch('{% url "register" %}', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({resend: true})
+        }).then(response => {
+            if (response.ok) {
+                startTimer(3, timerDisplay);
+                resendCodeButton.disabled = true;
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

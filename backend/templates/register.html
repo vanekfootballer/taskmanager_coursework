@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Регистрация</h2>
+    <form id="registerForm" method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div class="input-group">
+            <label for="username">Имя пользователя:</label>
+            <div class="input-wrapper">
+                <input type="text" id="username" name="username" required placeholder="Введите ваше имя">
+                <button type="button" id="clearUsername" class="clear-button"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="email">Email:</label>
+            <div class="input-wrapper">
+                <input type="email" id="email" name="email" required placeholder="Введите ваш email">
+                <button type="button" id="clearEmail" class="clear-button"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="password1">Пароль:</label>
+            <div class="input-wrapper">
+                <input type="password" id="password1" name="password1" required placeholder="Введите ваш пароль">
+                <button type="button" id="clearPassword" class="clear-button"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="password2">Подтвердите пароль:</label>
+            <div class="input-wrapper">
+                <input type="password" id="password2" name="password2" required placeholder="Подтвердите ваш пароль">
+                <button type="button" id="clearPassword2" class="clear-button"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <button type="submit">Зарегистрироваться</button>
+        <p id="errorMessage" class="error-message"></p>
+        <div class="auth-links">
+            <a href="{% url 'login' %}">Уже есть аккаунт? Войти</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

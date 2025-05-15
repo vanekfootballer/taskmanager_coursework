@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="task-menu">
+
+    <!-- Шапка меню задач -->
+    <div class="task-menu-header">
+        <h2>Задачи - {{ category.name }}</h2>
+        <button onclick="window.history.back()"><i class="fas fa-arrow-left"></i> Назад</button>
+    </div>
+    
+    <!-- Список подкатегорий и задач и элементы задач -->
+    {% for subcategory in subcategories %}
+    <div class="subcategory-section">
+        <h3>{{ subcategory.name }}</h3>
+        <ul>
+            {% for task in tasks %}
+                {% if task.subcategory_id == subcategory.id %}
+                <li data-task-id="{{ task.id }}">
+                    <div>
+                        <div>{{ task.title }}</div>
+                        {% if task.deadline %}
+                        <div>Дедлайн: {{ task.deadline|date:"Y-m-d" }}</div>
+                        {% endif %}
+                    </div>
+                    <button onclick="deleteTask({{task.id }})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </li>
+                {% endif %}
+            {% empty %}
+                <li>Нет задач в этой подкатегории</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+    
+    <!-- форма добавления задачи -->
+    <div class="task-form">
+        <input type="text" id="taskInput" placeholder="Новая задача">
+        <input type="date" id="taskDeadline">
+        <select id="taskSubcategory">
+            {% for subcategory in subcategories %}
+            <option value="{{ subcategory.id }}">{{ subcategory.name }}</option>
+            {% endfor %}
+        </select>
+        <button id="addTask">Добавить</button>
+        <p id="errorMessage" class="error-message"></p>
+    </div>
+</div>
+
+<script>
+    const currentCategorySlug = '{{ category.slug }}';
+</script>
+{% endblock %}

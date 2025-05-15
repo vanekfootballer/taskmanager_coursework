@@ -1,0 +1,390 @@
+/* Общие стили для всех страниц */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #a7ffeb, #EC80FF);
+    background-size: cover;
+    background-position: center;
+    transition: background 0.5s ease;
+}
+
+/* Контейнер для форм входа и регистрации */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+/* Заголовок контейнера */
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Группы полей ввода */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Лейблы для полей ввода */
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Контейнер для поля ввода и кнопки очистки */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Стили для полей ввода */
+.input-wrapper input {
+    width: 100%;
+    padding: 10px 30px 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Стили для фокуса на поле ввода */
+.input-wrapper input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Кнопка очистки поля ввода */
+.clear-button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 16px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+/* Стили для кнопки очистки при наведении */
+.clear-button:hover {
+    color: #777;
+}
+
+/* Основные кнопки (Войти, Зарегистрироваться, Отправить) */
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Стили для кнопок при наведении */
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Кнопка для входа через ВКонтакте */
+.social-login {
+    margin-top: 20px;
+}
+
+/* Стили для кнопки входа через ВКонтакте */
+.social-login button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4a76a8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Стили для кнопки входа через ВКонтакте при наведении */
+.social-login button:hover {
+    background-color: #3b5f8a;
+}
+
+/* Сообщения об ошибках */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
+}
+
+/* Ссылки для перехода между страницами */
+.auth-links {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Стили для ссылок */
+.auth-links a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Стили для ссылок при наведении */
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+/* Стили для контейнера иконок на главной странице */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+/* Стили для иконок */
+.icon-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px; 
+    height: 350px; 
+    background-color: rgba(23, 32, 42, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Стили для иконок при наведении */
+.icon-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для иконок внутри контейнера */
+.icon-box i {
+    font-size: 60px; 
+    margin-bottom: 15px;
+    color: #3498db;
+    transition: color 0.3s ease;
+}
+
+/* Стили для иконок при наведении */
+.icon-box:hover i {
+    color: #2980b9;
+    animation: pulse 1s infinite alternate;
+}
+
+/* Стили для текста внутри иконок */
+.icon-box span {
+    font-size: 18px; 
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+/* Стили для текста при наведении */
+.icon-box:hover span {
+    color: #17202A;
+}
+
+/* Анимация для иконок */
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+/* Стили для меню задач */
+.task-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+/* Заголовок меню задач */
+.task-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Стили для заголовка меню задач */
+.task-menu-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+/* Кнопка закрытия меню задач */
+#closeTaskMenu {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Список задач */
+#taskList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Элементы списка задач */
+#taskList li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Форма для добавления задач */
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Стили для полей ввода и выбора в форме задач */
+.task-form input, .task-form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Стили для кнопки добавления задачи */
+.task-form button {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Стили для кнопки добавления задачи при наведении */
+.task-form button:hover {
+    background-color: #2980b9;
+}
+
+/* Кнопка возврата на главную страницу */
+#backToMain {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #17202A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Стили для кнопки возврата при наведении */
+#backToMain:hover {
+    background-color: #2C3E50;
+}
+
+/* Стили для заголовков подкатегорий */
+#taskList h3 {
+    margin: 15px 0 10px 0;
+    font-size: 18px;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+/* Стили для контейнера подтверждения */
+.verification-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Стили для иконки подтверждения */
+.verification-icon {
+    font-size: 50px;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+/* Стили для таймера */
+#timer {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Стили для кнопки повторной отправки кода */
+#resendCode {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Стили для кнопки повторной отправки кода, когда отключена*/
+#resendCode:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Стили для кнопки повторной отправки кода при наведении */
+#resendCode:hover:not(:disabled) {
+    background-color: #2980b9;
+}
